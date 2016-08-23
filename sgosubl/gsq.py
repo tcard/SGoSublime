@@ -2,7 +2,7 @@ from sgosubl import gs
 import sublime
 import threading
 
-DOMAIN = 'GsQ'
+DOMAIN = 'SgsQ'
 
 class Launcher(threading.Thread):
 	def __init__(self, domain, f):
@@ -35,7 +35,7 @@ class Runner(threading.Thread):
 		finally:
 			gs.end(tid)
 
-class GsQ(threading.Thread):
+class SgsQ(threading.Thread):
 	def __init__(self, domain):
 		threading.Thread.__init__(self)
 		self.daemon = True
@@ -73,7 +73,7 @@ def dispatch(domain, f, msg='', set_status=False):
 
 	q = m.get(domain, None)
 	if not (q and q.is_alive()):
-		q = GsQ(domain)
+		q = SgsQ(domain)
 		q.start()
 		m[domain] = q
 

@@ -181,7 +181,7 @@ def _cmd(cmd_str, e):
 
 	return cmdl
 
-def gs_init(_={}):
+def sgs_init(_={}):
 	global _env_ext
 	global GO_VERSION
 	global VDIR_NAME
@@ -268,7 +268,7 @@ def _print(s):
 def getenv(name, default='', m={}):
 	return env(m).get(name, default)
 
-def gs_gopath(fn, roots=[]):
+def sgs_gopath(fn, roots=[]):
 	comps = fn.split(os.sep)
 	l = []
 	for i, s in enumerate(comps):
@@ -289,7 +289,7 @@ def env(m={}):
 	e.update(m)
 
 	roots = [os.path.normpath(s) for s in gs.lst(e.get('GOPATH', '').split(psep), e.get('GOROOT', ''))]
-	e['GS_GOPATH'] = gs_gopath(gs.getwd(), roots) or gs_gopath(gs.attr('last_active_go_fn', ''), roots)
+	e['GS_GOPATH'] = sgs_gopath(gs.getwd(), roots) or sgs_gopath(gs.attr('last_active_go_fn', ''), roots)
 
 	uenv = gs.setting('env', {})
 	for k in uenv:
@@ -301,7 +301,7 @@ def env(m={}):
 	e.update(uenv)
 	e.update(m)
 
-	if e['GS_GOPATH'] and gs.setting('use_gs_gopath') is True:
+	if e['GS_GOPATH'] and gs.setting('use_sgs_gopath') is True:
 		e['GOPATH'] = e['GS_GOPATH']
 
 	# For custom values of GOPATH, installed binaries via go install
@@ -419,7 +419,7 @@ def vdir():
 def bin_dir():
 	if not init_done:
 		# bootstrapping issue:
-		#	* gs_init useds ShellCommand to run the go command in order to init GO_VERSION
+		#	* sgs_init useds ShellCommand to run the go command in order to init GO_VERSION
 		#	* ShellCommand calls env()
 		#	* env() calls bin_dir()
 		#	* we(bin_dir()) use GO_VERSION

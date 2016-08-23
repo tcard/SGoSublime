@@ -78,7 +78,7 @@
 							{ "caption": "-" },
 							{
 								"caption": "Open Log File",
-								"command": "gs_open_home_path",
+								"command": "sgs_open_home_path",
 								"args": { "fn": "log.txt" }
 							}
 						]

@@ -7,7 +7,7 @@ import re
 import sublime
 import sublime_plugin
 
-DOMAIN = 'GsPalette'
+DOMAIN = 'SgsPalette'
 
 class Loc(object):
 	def __init__(self, fn, row, col=0):
@@ -15,7 +15,7 @@ class Loc(object):
 		self.row = row
 		self.col = col
 
-class GsPaletteCommand(sublime_plugin.WindowCommand):
+class SgsPaletteCommand(sublime_plugin.WindowCommand):
 	def is_enabled(self):
 		return bool(gs.active_valid_go_view(self.window))
 
@@ -245,7 +245,7 @@ class GsPaletteCommand(sublime_plugin.WindowCommand):
 			if not src or line_ref < 1 or not r:
 				return
 
-			view.run_command('gs_patch_imports', {
+			view.run_command('sgs_patch_imports', {
 				'pos': r.end(),
 				'content': src,
 				'added_path': (decl.get('path') if decl.get('add') else '')
@@ -261,7 +261,7 @@ class GsPaletteCommand(sublime_plugin.WindowCommand):
 	def palette_declarations(self, view, direct=False):
 		def f(res, err):
 			if err:
-				gs.notify('GsDeclarations', err)
+				gs.notify('SgsDeclarations', err)
 			else:
 				decls = res.get('file_decls', [])
 				decls.sort(key=lambda v: v.get('row', 0))

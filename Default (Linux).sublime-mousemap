@@ -3,12 +3,12 @@
 		"button": "button1",
 		"modifiers": ["ctrl", "shift"],
 		"press_command": "drag_select",
-		"command": "gs_on_left_click"
+		"command": "sgs_on_left_click"
 	},
 	{
 		"button": "button2",
 		"modifiers": ["ctrl", "shift"],
 		"press_command": "drag_select",
-		"command": "gs_on_right_click"
+		"command": "sgs_on_right_click"
 	}
 ]

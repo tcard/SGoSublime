@@ -93,7 +93,7 @@ _default_settings = {
 	"9o_show_end": False,
 	"gohtml_extensions": [],
 	"autoinst": False,
-	"use_gs_gopath": False,
+	"use_sgs_gopath": False,
 	"use_named_imports": False,
 	"installsuffix": "",
 	"ipc_timeout": 1,
@@ -314,7 +314,7 @@ def show_output(domain, s, print_output=True, syntax_file='', replace=True, merg
 
 		win = sublime.active_window()
 		if win:
-			win.get_output_panel(panel_name).run_command('gs_set_output_panel_content', {
+			win.get_output_panel(panel_name).run_command('sgs_set_output_panel_content', {
 				'content': s,
 				'syntax_file': syntax_file,
 				'scroll_end': scroll_end,
@@ -372,14 +372,14 @@ def env(m={}):
 	roots = lst(e.get('GOPATH', '').split(os.pathsep), e.get('GOROOT', ''))
 	lfn = attr('last_active_go_fn', '')
 	comps = lfn.split(os.sep)
-	gs_gopath = []
+	sgs_gopath = []
 	for i, s in enumerate(comps):
 		if s.lower() == "src":
 			p = os.sep.join(comps[:i])
 			if p not in roots:
-				gs_gopath.append(p)
-	gs_gopath.reverse()
-	e['GS_GOPATH'] = os.pathsep.join(gs_gopath)
+				sgs_gopath.append(p)
+	sgs_gopath.reverse()
+	e['GS_GOPATH'] = os.pathsep.join(sgs_gopath)
 
 	uenv = setting('env', {})
 	for k in uenv:
@@ -522,7 +522,7 @@ def do_focus(fn, row, col, win, focus_pat, cb):
 			r = view.find(focus_pat, 0)
 			if r:
 				row, col = view.rowcol(r.begin())
-		view.run_command("gs_goto_row_col", { "row": row, "col": col })
+		view.run_command("sgs_goto_row_col", { "row": row, "col": col })
 		if cb:
 			cb(True)
 
@@ -867,7 +867,7 @@ try:
 except Exception:
 	gs9o = {}
 
-def gs_init(m={}):
+def sgs_init(m={}):
 	global LOGFILE
 	try:
 		LOGFILE = open(home_path('log.txt'), 'a+')

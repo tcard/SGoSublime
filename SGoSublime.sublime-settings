@@ -11,7 +11,7 @@
 	// if set, whenever possible `GOPATH` will be set to `GS_GOPATH`.
 	// please see `Usage & Tips` `ctrl+dot,ctrl+2`
 	// section `Per-project  settings & Project-based GOPATH` for details about `GS_GOPATH`
-	"use_gs_gopath": false,
+	"use_sgs_gopath": false,
 
 	// Your shell. e.g. on Linux and OS X, if your shell bash:
 	// you may set it to ["/bin/bash", "--login", "-c", "$CMD"]
@@ -186,7 +186,7 @@
 
 	// commands to run on (post) save - list of objects of the form {"cmd": "...", "args": {...}}
 	// Any TextCommand may be run. Supported GS commands include:
-	//     gs_comp_lint - compile the pkg and report any errors
+	//     sgs_comp_lint - compile the pkg and report any errors
 	"on_save": [],
 
 	// as an alternative to Sublime Text's snippet system you may add snippets to SGoSublime's

@@ -11,7 +11,7 @@
 	},
 	{
 		"keys": ["super+.", "super+3"],
-		"command": "gs_sanity_check"
+		"command": "sgs_sanity_check"
 	},
 	{
 		"keys": ["super+.", "super+4"],
@@ -25,31 +25,31 @@
 	},
 	{
 		"keys": ["super+.", "super+p"],
-		"command": "gs_palette",
+		"command": "sgs_palette",
 		"args": {"palette": "imports", "direct": true},
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
 	{
 		"keys": ["super+.", "super+d"],
-		"command": "gs_palette",
+		"command": "sgs_palette",
 		"args": {"palette": "declarations", "direct": true},
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
 	{
 		"keys": ["super+.", "super+e"],
-		"command": "gs_palette",
+		"command": "sgs_palette",
 		"args": {"palette": "errors", "direct": true},
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
 	{
 		"keys": ["super+.", "super+["],
-		"command": "gs_palette",
+		"command": "sgs_palette",
 		"args": {"palette": "jump_back"},
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
 	{
 		"keys": ["super+.", "super+i"],
-		"command": "gs_palette",
+		"command": "sgs_palette",
 		"args": {"palette": "jump_to_imports"},
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
@@ -66,7 +66,7 @@
 	},
 	{
 		"keys": ["super+.", "super+g"],
-		"command": "gs_doc",
+		"command": "sgs_doc",
 		"args": {"mode": "goto"},
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
@@ -77,7 +77,7 @@
 	},
 	{
 		"keys": ["super+.", "super+h"],
-		"command": "gs_doc",
+		"command": "sgs_doc",
 		"args": {"mode": "hint"},
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
@@ -88,39 +88,39 @@
 	},
 	{
 		"keys": ["super+.", "super+f"],
-		"command": "gs_fmt",
+		"command": "sgs_fmt",
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
 	{
 		"keys": ["super+.", "super+n"],
-		"command": "gs_new_go_file"
+		"command": "sgs_new_go_file"
 	},
 	{
 		"keys": ["super+.", "super+a"],
-		"command": "gs_browse_declarations"
+		"command": "sgs_browse_declarations"
 	},
 	{
 		"keys": ["super+.", "super+l"],
-		"command": "gs_browse_declarations",
+		"command": "sgs_browse_declarations",
 		"args": { "dir": "." },
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
 	{
 		"keys": ["super+.", "super+o"],
-		"command": "gs_browse_packages"
+		"command": "sgs_browse_packages"
 	},
 	{
 		"keys": ["super+.", "super+m"],
-		"command": "gs_browse_files"
+		"command": "sgs_browse_files"
 	},
 	{
 		"keys": ["super+.", "super+t"],
-		"command": "gs_test",
+		"command": "sgs_test",
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
 	{
 		"keys": ["super+.", "shift+space"],
-		"command": "gs_show_call_tip",
+		"command": "sgs_show_call_tip",
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
 	{

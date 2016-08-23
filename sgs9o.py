@@ -96,7 +96,7 @@ class EV(sublime_plugin.EventListener):
 def cl_esc(e):
 	return (e[0], e[1].replace('$', '\\$'))
 
-class Gs9oBuildCommand(sublime_plugin.WindowCommand):
+class Sgs9oBuildCommand(sublime_plugin.WindowCommand):
 	def is_enabled(self):
 		view = gs.active_valid_go_view(self.window)
 		return view is not None
@@ -106,7 +106,7 @@ class Gs9oBuildCommand(sublime_plugin.WindowCommand):
 		args = {'run': gs.setting('build_command', ['^1'])} if gs.is_pkg_view(view) else {}
 		view.run_command('gs9o_open', args)
 
-class Gs9oInsertLineCommand(sublime_plugin.TextCommand):
+class Sgs9oInsertLineCommand(sublime_plugin.TextCommand):
 	def run(self, edit, after=True):
 		insln = lambda: self.view.insert(edit, gs.sel(self.view).begin(), "\n")
 		if after:
@@ -118,7 +118,7 @@ class Gs9oInsertLineCommand(sublime_plugin.TextCommand):
 			self.view.run_command("move", {"by": "lines", "forward": False})
 
 
-class Gs9oMoveHist(sublime_plugin.TextCommand):
+class Sgs9oMoveHist(sublime_plugin.TextCommand):
 	def run(self, edit, up):
 		view = self.view
 		pos = gs.sel(view).begin()
@@ -160,7 +160,7 @@ class Gs9oMoveHist(sublime_plugin.TextCommand):
 		view.sel().clear()
 		view.sel().add(sublime.Region(n, n))
 
-class Gs9oInitCommand(sublime_plugin.TextCommand):
+class Sgs9oInitCommand(sublime_plugin.TextCommand):
 	def run(self, edit, wd=None):
 		v = self.view
 		vs = v.settings()
@@ -230,7 +230,7 @@ class Gs9oInitCommand(sublime_plugin.TextCommand):
 
 		os.chdir(wd)
 
-class Gs9oOpenCommand(sublime_plugin.TextCommand):
+class Sgs9oOpenCommand(sublime_plugin.TextCommand):
 	def run(self, edit, wd=None, run=[], save_hist=False, focus_view=True):
 		self.view.window().run_command('gs9o_win_open', {
 			'wd': wd,
@@ -239,7 +239,7 @@ class Gs9oOpenCommand(sublime_plugin.TextCommand):
 			'focus_view': focus_view,
 		})
 
-class Gs9oWinOpenCommand(sublime_plugin.WindowCommand):
+class Sgs9oWinOpenCommand(sublime_plugin.WindowCommand):
 	def run(self, wd=None, run=[], save_hist=False, focus_view=True):
 		win = self.window
 		wid = win.id()
@@ -263,7 +263,7 @@ class Gs9oWinOpenCommand(sublime_plugin.WindowCommand):
 		if run:
 			v.run_command('gs9o_paste_exec', {'cmd': ' '.join(run), 'save_hist': save_hist})
 
-class Gs9oPasteExecCommand(sublime_plugin.TextCommand):
+class Sgs9oPasteExecCommand(sublime_plugin.TextCommand):
 	def run(self, edit, cmd, save_hist=False):
 		view = self.view
 		view.insert(edit, view.line(view.size()-1).end(), cmd)
@@ -271,7 +271,7 @@ class Gs9oPasteExecCommand(sublime_plugin.TextCommand):
 		view.sel().add(view.line(view.size()-1).end())
 		view.run_command('gs9o_exec', {'save_hist': save_hist})
 
-class Gs9oOpenSelectionCommand(sublime_plugin.TextCommand):
+class Sgs9oOpenSelectionCommand(sublime_plugin.TextCommand):
 	def is_enabled(self):
 		pos = gs.sel(self.view).begin()
 		return self.view.score_selector(pos, 'text.9o') > 0
@@ -351,7 +351,7 @@ def _exparg(s, m):
 	s = os.path.expanduser(s)
 	return s
 
-class Gs9oExecCommand(sublime_plugin.TextCommand):
+class Sgs9oExecCommand(sublime_plugin.TextCommand):
 	def is_enabled(self):
 		pos = gs.sel(self.view).begin()
 		return self.view.score_selector(pos, 'text.9o') > 0
@@ -449,7 +449,7 @@ class Gs9oExecCommand(sublime_plugin.TextCommand):
 		else:
 			view.insert(edit, gs.sel(view).begin(), '\n')
 
-class Gs9oPushOutput(sublime_plugin.TextCommand):
+class Sgs9oPushOutput(sublime_plugin.TextCommand):
 	def run(self, edit, rkey, output, hourglass_repl=''):
 		view = self.view
 		output = '\t%s' % gs.ustr(output).strip().replace('\r', '').replace('\n', '\n\t')
@@ -473,7 +473,7 @@ class Gs9oPushOutput(sublime_plugin.TextCommand):
 		else:
 			view.show(r.begin())
 
-class Gs9oRunManyCommand(sublime_plugin.TextCommand):
+class Sgs9oRunManyCommand(sublime_plugin.TextCommand):
 	def run(self, edit, wd=None, commands=[], save_hist=False, focus_view=False):
 		for run in commands:
 			self.view.run_command("gs9o_open", {
@@ -514,7 +514,7 @@ def _save_all(win, wd):
 			try:
 				fn = v.file_name()
 				if fn and v.is_dirty() and fn.endswith('.sgo') and os.path.dirname(fn) == wd:
-					v.run_command('gs_fmt_save')
+					v.run_command('sgs_fmt_save')
 			except Exception:
 				gs.error_traceback(DOMAIN)
 
@@ -712,7 +712,7 @@ def cmd_9(view, edit, args, wd, rkey):
 
 def cmd_tskill(view, edit, args, wd, rkey):
 	if len(args) == 0:
-		sublime.set_timeout(lambda: sublime.active_window().run_command("gs_show_tasks"), 0)
+		sublime.set_timeout(lambda: sublime.active_window().run_command("sgs_show_tasks"), 0)
 		push_output(view, rkey, '')
 		return
 

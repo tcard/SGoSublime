@@ -6,7 +6,7 @@ import re
 import sublime
 import sublime_plugin
 
-DOMAIN = 'GsDoc'
+DOMAIN = 'SgsDoc'
 
 GOOS_PAT = re.compile(r'_(%s)' % '|'.join(gs.GOOSES))
 GOARCH_PAT = re.compile(r'_(%s)' % '|'.join(gs.GOARCHES))
@@ -16,12 +16,12 @@ EXT_EXCLUDE = [
 	'pprof', 'prof', 'mem', 'cpu', 'swap',
 ]
 
-class GsDocCommand(sublime_plugin.TextCommand):
+class SgsDocCommand(sublime_plugin.TextCommand):
 	def is_enabled(self):
 		return gs.is_go_source_view(self.view)
 
 	def show_output(self, s):
-		gs.show_output(DOMAIN+'-output', s, False, 'GsDoc')
+		gs.show_output(DOMAIN+'-output', s, False, 'SgsDoc')
 
 	def run(self, _, mode=''):
 		view = self.view
@@ -69,7 +69,7 @@ class GsDocCommand(sublime_plugin.TextCommand):
 
 		mg9.doc(view.file_name(), src, pt, f)
 
-class GsBrowseDeclarationsCommand(sublime_plugin.WindowCommand):
+class SgsBrowseDeclarationsCommand(sublime_plugin.WindowCommand):
 	def run(self, dir=''):
 		if dir == '.':
 			self.present_current()
@@ -163,7 +163,7 @@ def handle_pkgdirs_res(res):
 	ents.sort(key = lambda a: a.lower())
 	return (ents, m)
 
-class GsBrowsePackagesCommand(sublime_plugin.WindowCommand):
+class SgsBrowsePackagesCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		def f(res, err):
 			if err:
@@ -175,7 +175,7 @@ class GsBrowsePackagesCommand(sublime_plugin.WindowCommand):
 				def cb(i, win):
 					if i >= 0:
 						dirname = gs.basedir_or_cwd(m[ents[i]])
-						win.run_command('gs_browse_files', {'dir': dirname})
+						win.run_command('sgs_browse_files', {'dir': dirname})
 				gs.show_quick_panel(ents, cb)
 			else:
 				gs.show_quick_panel([['', 'No source directories found']])
@@ -221,14 +221,14 @@ def show_pkgfiles(dirname):
 			if i >= 0:
 				fn = m[ents[i]]
 				if os.path.isdir(fn):
-					win.run_command("gs_browse_files", {"dir": fn})
+					win.run_command("sgs_browse_files", {"dir": fn})
 				else:
 					gs.focus(fn, 0, 0, win)
 		gs.show_quick_panel(ents, cb)
 	else:
 		gs.show_quick_panel([['', 'No files found']])
 
-class GsBrowseFilesCommand(sublime_plugin.WindowCommand):
+class SgsBrowseFilesCommand(sublime_plugin.WindowCommand):
 	def run(self, dir=''):
 		if not dir:
 			view = self.window.active_view()

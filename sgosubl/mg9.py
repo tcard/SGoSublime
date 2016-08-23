@@ -23,7 +23,7 @@ TAG = about.VERSION
 INSTALL_VERSION = about.VERSION
 INSTALL_EXE = about.MARGO_EXE
 
-def gs_init(m={}):
+def sgs_init(m={}):
 	global INSTALL_VERSION
 	global INSTALL_EXE
 

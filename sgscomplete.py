@@ -14,7 +14,7 @@ REASONABLE_PKGNAME_PAT = re.compile(r'^\w+$')
 last_gopath = ''
 END_SELECTOR_PAT = re.compile(r'.*?((?:[\w.]+\.)?(\w+))$')
 START_SELECTOR_PAT = re.compile(r'^([\w.]+)')
-DOMAIN = 'GsComplete'
+DOMAIN = 'SgsComplete'
 SNIPPET_VAR_PAT = re.compile(r'\$\{([a-zA-Z]\w*)\}')
 
 HINT_KEY = '%s.completion-hint' % DOMAIN
@@ -270,7 +270,7 @@ def _ct_poller():
 	try:
 		view = sublime.active_window().active_view()
 		if gs.setting('calltips') is True:
-			view.run_command('gs_show_call_tip', {'set_status': True})
+			view.run_command('sgs_show_call_tip', {'set_status': True})
 		else:
 			view.erase_status(HINT_KEY)
 	except Exception:
@@ -278,7 +278,7 @@ def _ct_poller():
 
 	sublime.set_timeout(_ct_poller, 1000)
 
-class GsShowCallTip(sublime_plugin.TextCommand):
+class SgsShowCallTip(sublime_plugin.TextCommand):
 	def is_enabled(self):
 		return gs.is_go_source_view(self.view)
 
@@ -310,7 +310,7 @@ class GsShowCallTip(sublime_plugin.TextCommand):
 					else:
 						s = '// %s' % (err or 'No calltips found')
 
-					gs.show_output(HINT_KEY, s, print_output=False, syntax_file='GsDoc')
+					gs.show_output(HINT_KEY, s, print_output=False, syntax_file='SgsDoc')
 
 			sublime.set_timeout(lambda: f2(cl, err), 0)
 

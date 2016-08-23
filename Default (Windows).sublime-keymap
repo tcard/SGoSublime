@@ -11,7 +11,7 @@
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+3"],
-		"command": "gs_sanity_check"
+		"command": "sgs_sanity_check"
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+4"],
@@ -31,31 +31,31 @@
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+p"],
-		"command": "gs_palette",
+		"command": "sgs_palette",
 		"args": {"palette": "imports", "direct": true},
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+d"],
-		"command": "gs_palette",
+		"command": "sgs_palette",
 		"args": {"palette": "declarations", "direct": true},
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+e"],
-		"command": "gs_palette",
+		"command": "sgs_palette",
 		"args": {"palette": "errors", "direct": true},
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+["],
-		"command": "gs_palette",
+		"command": "sgs_palette",
 		"args": {"palette": "jump_back"},
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+i"],
-		"command": "gs_palette",
+		"command": "sgs_palette",
 		"args": {"palette": "jump_to_imports"},
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
@@ -72,7 +72,7 @@
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+g"],
-		"command": "gs_doc",
+		"command": "sgs_doc",
 		"args": {"mode": "goto"},
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
@@ -83,7 +83,7 @@
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+h"],
-		"command": "gs_doc",
+		"command": "sgs_doc",
 		"args": {"mode": "hint"},
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
@@ -94,39 +94,39 @@
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+f"],
-		"command": "gs_fmt",
+		"command": "sgs_fmt",
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+n"],
-		"command": "gs_new_go_file"
+		"command": "sgs_new_go_file"
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+a"],
-		"command": "gs_browse_declarations"
+		"command": "sgs_browse_declarations"
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+l"],
-		"command": "gs_browse_declarations",
+		"command": "sgs_browse_declarations",
 		"args": { "dir": "." },
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+o"],
-		"command": "gs_browse_packages"
+		"command": "sgs_browse_packages"
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+m"],
-		"command": "gs_browse_files"
+		"command": "sgs_browse_files"
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+t"],
-		"command": "gs_test",
+		"command": "sgs_test",
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
 	{
 		"keys": ["ctrl+.", "ctrl+space"],
-		"command": "gs_show_call_tip",
+		"command": "sgs_show_call_tip",
 		"context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }]
 	},
 	{

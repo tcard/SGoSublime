@@ -5,11 +5,11 @@ import re
 import sublime
 import sublime_plugin
 
-DOMAIN = 'GsTest'
+DOMAIN = 'SgsTest'
 
 TEST_PAT = re.compile(r'^((Test|Example|Benchmark)\w*)')
 
-class GsTestCommand(sublime_plugin.WindowCommand):
+class SgsTestCommand(sublime_plugin.WindowCommand):
 	def is_enabled(self):
 		return gs.is_go_source_view(self.window.active_view())
 

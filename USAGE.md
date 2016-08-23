@@ -44,7 +44,7 @@ Often when commenting out a line, the immediate action following this is to move
 
 With this key binding, you can have the line commented out and the cursor automatically moved to the next line.
 
-{ "keys": ["ctrl+/"], "command": "gs_comment_forward", "context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }] },
+{ "keys": ["ctrl+/"], "command": "sgs_comment_forward", "context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }] },
 
 Package Imports
 ---------------
@@ -115,7 +115,7 @@ success by adding the string `$GS_GOPATH` to your global `GOPATH` setting e.g.
 
 * or the path the current `.go` file (or last activated `.go` file if the current file is not `.go`) e.g. if your file path is `/tmp/go/src/hello/main.go` then it will be `/tmp/go`
 
-If you would like to use `GS_GOPATH` exclusively, you may set the option `use_gs_gopath` to true.
+If you would like to use `GS_GOPATH` exclusively, you may set the option `use_sgs_gopath` to true.
 This automatically changes `GOPATH` to the value of `$GS_GOPATH` if `$GS_GOPATH` is not empty.
 This allows you to e.g. automatically adapt `GOPATH` to your current project rather than
 reverting to your normal `GOPATH`.
@@ -127,7 +127,7 @@ The source is continuously scanned for syntax errors. SGoSublime will try to cat
 forgetting to call flag.Parse (if this causes false positives, please file a bug report).
 
 Apart from the highlighting in the view using a dot icon in the gutter and usually underlining the
-first character of an error region. You are given an entry in the status bar in the form: `GsLint (N)`
+first character of an error region. You are given an entry in the status bar in the form: `SgsLint (N)`
 where `N` is the number of errors found in that file. You can show the list of errors and navigate to
 them by pressing `ctrl+dot`,`ctrl+e`. Errors for the current line are shown in the status bar.
 
@@ -162,8 +162,8 @@ Misc. Helper Commands
 
 The following commands can be assigned key bindings to further improve your editing experience.
 
-* gs_fmt - this command runs `sgofmt` on the current buffer. Also available via the key binding `ctrl+dot`,`ctrl+f`.
+* sgs_fmt - this command runs `sgofmt` on the current buffer. Also available via the key binding `ctrl+dot`,`ctrl+f`.
 
-* gs_fmt_save, gs_fmt_prompt_save_as - these commands will run the `sgo_fmt` followed by `save` or `prompt_save_as` - these are bound to `ctrl+s` and `ctrl+shift+s` respectively, by default.
+* sgs_fmt_save, sgs_fmt_prompt_save_as - these commands will run the `sgo_fmt` followed by `save` or `prompt_save_as` - these are bound to `ctrl+s` and `ctrl+shift+s` respectively, by default.
 
-* gs_comment_forward - this command will activate the `ctrl+/` commenting and move the cursor to the next line, allowing you to comment/uncomment multiple lines in sequence without breaking to move the cursor. You can replace the default behaviour by overriding it in your user key bindings (Preferences > Key Bindings - User) with `{ "keys": ["ctrl+/"], "command": "gs_comment_forward", "context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }] }`
+* sgs_comment_forward - this command will activate the `ctrl+/` commenting and move the cursor to the next line, allowing you to comment/uncomment multiple lines in sequence without breaking to move the cursor. You can replace the default behaviour by overriding it in your user key bindings (Preferences > Key Bindings - User) with `{ "keys": ["ctrl+/"], "command": "sgs_comment_forward", "context": [{ "key": "selector", "operator": "equal", "operand": "source.sgo" }] }`

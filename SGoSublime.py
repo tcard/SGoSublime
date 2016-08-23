@@ -57,14 +57,14 @@ def plugin_loaded():
 		print('SGoSublime %s: init mod(%s)' % (VERSION, mod_name))
 
 		try:
-			mod.gs_init({
+			mod.sgs_init({
 				'version': VERSION,
 				'ann': ANN,
 				'margo_exe': MARGO_EXE,
 			})
 		except TypeError:
 			# old versions didn't take an arg
-			mod.gs_init()
+			mod.sgs_init()
 
 	ev.init.post_add = lambda e, f: f()
 	ev.init()

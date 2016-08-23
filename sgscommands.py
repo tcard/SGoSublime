@@ -8,17 +8,17 @@ import sublime_plugin
 
 DOMAIN = 'SGoSublime'
 
-class GsCommentForwardCommand(sublime_plugin.TextCommand):
+class SgsCommentForwardCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		self.view.run_command("toggle_comment", {"block": False})
 		self.view.run_command("move", {"by": "lines", "forward": True})
 
-class GsStartNextLineCommentCommand(sublime_plugin.TextCommand):
+class SgsStartNextLineCommentCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		self.view.run_command("run_macro_file", {"file": "Packages/Default/Add Line.sublime-macro"})
 		self.view.run_command("toggle_comment", {"block": False})
 
-class GsFmtCommand(sublime_plugin.TextCommand):
+class SgsFmtCommand(sublime_plugin.TextCommand):
 	def is_enabled(self):
 		fn = self.view.file_name()
 		if fn:
@@ -49,23 +49,23 @@ class GsFmtCommand(sublime_plugin.TextCommand):
 			msg = 'PANIC: Cannot fmt file. Check your source for errors (and maybe undo any changes).'
 			sublime.error_message("%s: %s: Merge failure: `%s'" % (DOMAIN, msg, err))
 
-class GsFmtSaveCommand(sublime_plugin.TextCommand):
+class SgsFmtSaveCommand(sublime_plugin.TextCommand):
 	def is_enabled(self):
 		return gs.is_go_source_view(self.view)
 
 	def run(self, edit):
-		self.view.run_command("gs_fmt")
+		self.view.run_command("sgs_fmt")
 		sublime.set_timeout(lambda: self.view.run_command("save"), 0)
 
-class GsFmtPromptSaveAsCommand(sublime_plugin.TextCommand):
+class SgsFmtPromptSaveAsCommand(sublime_plugin.TextCommand):
 	def is_enabled(self):
 		return gs.is_go_source_view(self.view)
 
 	def run(self, edit):
-		self.view.run_command("gs_fmt")
+		self.view.run_command("sgs_fmt")
 		sublime.set_timeout(lambda: self.view.run_command("prompt_save_as"), 0)
 
-class GsGotoRowColCommand(sublime_plugin.TextCommand):
+class SgsGotoRowColCommand(sublime_plugin.TextCommand):
 	def run(self, edit, row, col=0):
 		pt = self.view.text_point(row, col)
 		r = sublime.Region(pt, pt)
@@ -84,7 +84,7 @@ class GsGotoRowColCommand(sublime_plugin.TextCommand):
 			sublime.set_timeout(show, s)
 			sublime.set_timeout(hide, h)
 
-class GsNewGoFileCommand(sublime_plugin.WindowCommand):
+class SgsNewGoFileCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		pkg_name = 'main'
 		view = gs.active_valid_go_view()
@@ -97,14 +97,14 @@ class GsNewGoFileCommand(sublime_plugin.WindowCommand):
 						pkg_name = name
 						break
 		except Exception:
-			gs.error_traceback('GsNewGoFile')
+			gs.error_traceback('SgsNewGoFile')
 
-		self.window.new_file().run_command('gs_create_new_go_file', {
+		self.window.new_file().run_command('sgs_create_new_go_file', {
 			'pkg_name': pkg_name,
 			'file_name': 'main.sgo',
 		})
 
-class GsCreateNewGoFileCommand(sublime_plugin.TextCommand):
+class SgsCreateNewGoFileCommand(sublime_plugin.TextCommand):
 	def run(self, edit, pkg_name, file_name):
 		view = self.view
 		view.set_name(file_name)
@@ -113,7 +113,7 @@ class GsCreateNewGoFileCommand(sublime_plugin.TextCommand):
 		view.sel().clear()
 		view.sel().add(view.find(pkg_name, 0, sublime.LITERAL))
 
-class GsShowTasksCommand(sublime_plugin.WindowCommand):
+class SgsShowTasksCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		ents = []
 		now = datetime.datetime.now()
@@ -141,20 +141,20 @@ class GsShowTasksCommand(sublime_plugin.WindowCommand):
 
 		gs.show_quick_panel(ents, cb)
 
-class GsOpenHomePathCommand(sublime_plugin.WindowCommand):
+class SgsOpenHomePathCommand(sublime_plugin.WindowCommand):
 	def run(self, fn):
 		self.window.open_file(gs.home_path(fn))
 
-class GsOpenDistPathCommand(sublime_plugin.WindowCommand):
+class SgsOpenDistPathCommand(sublime_plugin.WindowCommand):
 	def run(self, fn):
 		self.window.open_file(gs.dist_path(fn))
 
-class GsSanityCheckCommand(sublime_plugin.WindowCommand):
+class SgsSanityCheckCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		s = 'SGoSublime Sanity Check\n\n%s' % '\n'.join(mg9.sanity_check_sl(mg9.sanity_check({}, True)))
 		gs.show_output('SGoSublime', s)
 
-class GsSetOutputPanelContentCommand(sublime_plugin.TextCommand):
+class SgsSetOutputPanelContentCommand(sublime_plugin.TextCommand):
 	def run(self, edit, content, syntax_file, scroll_end, replace):
 		panel = self.view
 		panel.set_read_only(False)
@@ -173,7 +173,7 @@ class GsSetOutputPanelContentCommand(sublime_plugin.TextCommand):
 		pst.set("line_numbers", False)
 
 		if syntax_file:
-			if syntax_file == 'GsDoc':
+			if syntax_file == 'SgsDoc':
 				panel.set_syntax_file(gs.tm_path('doc'))
 				panel.run_command("fold_by_level", { "level": 1 })
 			else:
@@ -184,12 +184,12 @@ class GsSetOutputPanelContentCommand(sublime_plugin.TextCommand):
 		if scroll_end:
 			panel.show(panel.size())
 
-class GsInsertContentCommand(sublime_plugin.TextCommand):
+class SgsInsertContentCommand(sublime_plugin.TextCommand):
 	def run(self, edit, pos, content):
 		pos = int(pos) # un-fucking-believable
 		self.view.insert(edit, pos, content)
 
-class GsPatchImportsCommand(sublime_plugin.TextCommand):
+class SgsPatchImportsCommand(sublime_plugin.TextCommand):
 	def run(self, edit, pos, content, added_path=''):
 		pos = int(pos) # un-fucking-believable
 		view = self.view

@@ -3,11 +3,11 @@ from . import sgstest
 import sublime
 import sublime_plugin
 
-DOMAIN = 'GsEV'
+DOMAIN = 'SgsEV'
 
 class EV(sublime_plugin.EventListener):
 	def on_pre_save(self, view):
-		view.run_command('gs_fmt')
+		view.run_command('sgs_fmt')
 		sublime.set_timeout(lambda: do_set_gohtml_syntax(view), 0)
 
 	def on_post_save(self, view):
@@ -25,21 +25,21 @@ class EV(sublime_plugin.EventListener):
 	def on_load(self, view):
 		sublime.set_timeout(lambda: do_set_gohtml_syntax(view), 0)
 
-class GsOnLeftClick(sublime_plugin.TextCommand):
+class SgsOnLeftClick(sublime_plugin.TextCommand):
 	def run(self, edit):
 		view = self.view
 		if gs.is_go_source_view(view):
 			if not gstest.handle_action(view, 'left-click'):
-				view.run_command('gs_doc', {"mode": "goto"})
+				view.run_command('sgs_doc', {"mode": "goto"})
 		elif view.score_selector(gs.sel(view).begin(), "text.9o") > 0:
 			view.window().run_command("gs9o_open_selection")
 
-class GsOnRightClick(sublime_plugin.TextCommand):
+class SgsOnRightClick(sublime_plugin.TextCommand):
 	def run(self, edit):
 		view = self.view
 		if gs.is_go_source_view(view):
 			if not gstest.handle_action(view, 'right-click'):
-				view.run_command('gs_doc', {"mode": "hint"})
+				view.run_command('sgs_doc', {"mode": "hint"})
 
 def do_post_save(view):
 	if not gs.is_pkg_view(view):

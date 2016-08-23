@@ -9,8 +9,8 @@ import sublime_plugin
 import threading
 import time
 
-DOMAIN = 'GsLint'
-CL_DOMAIN = 'GsCompLint'
+DOMAIN = 'SgsLint'
+CL_DOMAIN = 'SgsCompLint'
 
 class FileRef(object):
 	def __init__(self, view):
@@ -26,7 +26,7 @@ class Report(object):
 		self.col = col
 		self.msg = msg
 
-class GsLintThread(threading.Thread):
+class SgsLintThread(threading.Thread):
 	def __init__(self):
 		threading.Thread.__init__(self)
 		self.daemon = True
@@ -182,7 +182,7 @@ def watch():
 						fr.tm = 0.0
 						fr.state = -1
 						if not th:
-							th = GsLintThread()
+							th = SgsLintThread()
 							th.start()
 						th.putq(fn)
 
@@ -255,7 +255,7 @@ def do_comp_lint(dirname, fn):
 		highlight(fr)
 	sublime.set_timeout(cb, 0)
 
-class GsCompLintCommand(sublime_plugin.TextCommand):
+class SgsCompLintCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		if gs.setting('comp_lint_enabled') is not True:
 			return

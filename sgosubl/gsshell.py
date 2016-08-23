@@ -11,7 +11,7 @@ import threading
 import time
 import traceback
 
-DOMAIN = "GsShell"
+DOMAIN = "SgsShell"
 GO_RUN_PAT = re.compile(r'^go\s+(run|play)$', re.IGNORECASE)
 GO_SHARE_PAT = re.compile(r'^go\s+share$', re.IGNORECASE)
 GO_PLAY_PAT = re.compile(r'(\b)go\s+play(\b)', re.IGNORECASE)
@@ -288,7 +288,7 @@ class ViewCommand(Command):
 
 	def write_lines(self, view, lines):
 		try:
-			view.run_command('gs_insert_content', {
+			view.run_command('sgs_insert_content', {
 				'content': '\n'.join(lines),
 				'pos': view.size(),
 			})
